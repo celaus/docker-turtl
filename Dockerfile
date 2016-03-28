@@ -22,4 +22,4 @@ WORKDIR /turtl
 
 EXPOSE 8181
 
-CMD ["sbcl --load start.lisp"]
+CMD ["/usr/bin/sbcl --load start.lisp"]

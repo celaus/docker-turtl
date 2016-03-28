@@ -1,4 +1,4 @@
-## -*- docker-image-name: "docker-turtl" -*-
+## -*- docker-image-name: "clma/docker-turtl" -*-
 #
 # turtl.it unofficial API Dockerfile
 #
@@ -9,21 +9,18 @@ MAINTAINER clma <claus@crate.io>
 RUN pacman -Sy sbcl git libuv --noconfirm
 RUN curl -O https://beta.quicklisp.org/quicklisp.lisp && sbcl --load quicklisp.lisp <<< '(quicklisp-quickstart:install)'
 
-RUN git clone https://github.com/turtl/api.git --depth 1
+RUN git clone https://github.com/turtl/api.git --depth 1 /turtl
 
-ADD /api /turtl
-
-ENV PATH /turtl/bin:$PATH
 
 VOLUME ["/turtl/config"]
 
+# auto link default config (?)
 #ADD /turtl/config/config.default.lisp /turtl/config/config.lisp
 
 
 WORKDIR /turtl
 
-# http: 4200 tcp
-# transport: 4300 tcp
+
 EXPOSE 8181
 
 CMD ["sbcl --load /turtl/start.lisp"]

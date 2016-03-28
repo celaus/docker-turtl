@@ -1,0 +1,3 @@
+# A Dockerfile for https://turtl.it/
+
+I created this file to run Turtl on my server. No guarantees that it works for you - however its fairly simple so have a look!
